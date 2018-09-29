@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Image to Rainbow Effect by: Aahedi</title>
+<meta name='description' content='Convert Image to Rainbow Effect Multicolor By Aahedi'>
+<meta name='author' content='Aahedi'>
+  <style>html,body{margin:0;padding:0;width:100%;}h1{text-align:center}
+  textarea,button,input,span{display:block;margin:auto;width:50%;}textarea{height:180px;resize:none;padding:10px;font-size:14px}
+  button{height:40px}
+body {
+  background-color: lightCyan;
+}
+h1 {
+  color:black;
+  background-color:cyan;
+  padding: 5px;
+  margin: 0px 0px 5px;
+}
+canvas {
+  border: 1px solid black;
+  height: 150px;
+  background-color: white;
+}
+.hide {
+  display: none;
+}
+div.edits {
+  float:left;
+  width:20%
+}</style>
+<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+</head>
+    <body>
+<h1>Javascript Rainbow Image</h1>
+<div>
+<canvas id="canvas1"> </canvas> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<canvas id="canvas2"> </canvas> <br>
+</div>
+<div class="edits">
+<h3> Upload Image </h3>
+<input type="file" multiple="false" accept"image/*" id="fileinput" onchange="upload()"></input>
+</div>
+<div class="edits" style="float:left; width:50%">
+ <h3> Edit Image </h3>
+  <input type="button" value="Rainbow!" onClick="filterRainbow()"</input>
+  <input type="button" value="Reset" onClick="reset()"</input>  
+</div>
+<script>
+var canvas1 = document.getElementById("canvas1")
+var canvas2 = document.getElementById("canvas2")
+var fileinput = document.getElementById("fileinput")
+var image = null
+function upload() {
+  image = new SimpleImage(fileinput)
+  image.drawTo(canvas1)
+}
+function reset() {
+  image2 = new SimpleImage(fileinput)
+  image2.drawTo(canvas2)
+  image = image2
+}
+
+function filterRainbow() {
+var height = image.getHeight();
+ for (var pixel of image.values()) {
+  var y = pixel.getY();
+  var avg = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
+    if (y < height / 7) { //y < height / 7
+      //red
+      if (avg < 128) {
+        pixel.setRed(2 * avg); //(2 * avg
+        pixel.setGreen(0); //0
+        pixel.setBlue(0); //0
+      } else {
+        pixel.setRed(255); //255
+        pixel.setGreen(2 * avg - 255); //2 * avg - 255
+        pixel.setBlue(2 * avg - 255); //2 * avg - 255
+    }}
+   else if (y < height * 2 / 7) {
+    //orange
+      if (avg < 128) {
+        pixel.setRed(2 * avg); 
+        pixel.setGreen(0.8 * avg);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(255);
+        pixel.setGreen(1.2 * avg - 51);
+        pixel.setBlue(2 * avg - 255);
+  }}
+   else if (y < height * 3 / 7) {
+    //yellow
+      if (avg < 128) {
+        pixel.setRed(2 * avg); 
+        pixel.setGreen(2 * avg);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(255);
+        pixel.setGreen(255);
+        pixel.setBlue(2 * avg - 255);
+  }}
+   else if (y < height * 4 / 7) {
+    //green
+      if (avg < 128) {
+        pixel.setRed(0); 
+        pixel.setGreen(2 * avg);
+        pixel.setBlue(0);
+      } else {
+        pixel.setRed(2 * avg - 255);
+        pixel.setGreen(255);
+        pixel.setBlue(2 * avg - 255);
+  }}
+   else if (y < height * 5 / 7) {
+    //blue
+      if (avg < 128) {
+        pixel.setRed(0); 
+        pixel.setGreen(0);
+        pixel.setBlue(2 * avg);
+      } else {
+        pixel.setRed(2 * avg - 255);
+        pixel.setGreen(2 * avg - 255);
+        pixel.setBlue(255);
+  }}
+   else if (y < height * 6 / 7) {
+    //indigo
+      if (avg < 128) {
+        pixel.setRed(0.8 * avg); 
+        pixel.setGreen(0);
+        pixel.setBlue(2 * avg);
+      } else {
+        pixel.setRed(1.2 * avg - 51);
+        pixel.setGreen(2 * avg - 255);
+        pixel.setBlue(255);
+  }}
+   else if (y <= height * 7 / 7) {
+    //violet
+      if (avg < 128) {
+        pixel.setRed(1.6 * avg); 
+        pixel.setGreen(0);
+        pixel.setBlue(1.6 * avg);
+      } else {
+        pixel.setRed(0.4 * avg +153);
+        pixel.setGreen(2 * avg - 255);
+        pixel.setBlue(0.4 * avg + 153);
+  }}
+   
+   
+   
+   
+}
+  image.drawTo(canvas2)
+}
+</script>
+</body></html>
